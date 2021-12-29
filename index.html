@@ -1,0 +1,327 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ِAroos Menu</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link href="assets/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>AROOS DAMASCUS</h1>
+    </header>
+    <!-- ************************************************************************************************ -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          id="home-tab"
+          data-toggle="tab"
+          href="#home"
+          role="tab"
+          aria-controls="home"
+          aria-selected="true"
+          >Home</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          id="profile-tab"
+          data-toggle="tab"
+          href="#profile"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+          >Daily Meals</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        <!-- *****************************Start add parcel meal modal ***************************** -->
+
+        <div id="container">
+          <aside id="sidebar"></aside>
+          <section>
+            <div id="sectionA" class="container base-table card card-body">
+              <a
+                class="btn btn-primary"
+                id="add-meal-btn"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                ><h6>Add Meal to special category</h6></a
+              ><br /><br />
+              <table class="table table-dark">
+                <thead>
+                  <th>English Title</th>
+                  <th>Arabic Title</th>
+                  <th>Price AED</th>
+                  <th>Desc Arabic</th>
+                  <th>Desc English</th>
+                  <th>Image</th>
+                  <th>Action</th>
+                </thead>
+                <tbody id="tbody1"></tbody>
+              </table>
+
+              <!-- start Modal -->
+              <div
+                class="modal fade"
+                id="exampleModalCenter"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">
+                        Add Meal
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label class="formAddLable">Meal arabic title</label
+                      ><input
+                        class="form-control"
+                        type="text"
+                        id="ar-title"
+                        placeholder="arabic title"
+                      /><br />
+                      <label class="formAddLable">Meal english title</label
+                      ><input
+                        type="text"
+                        id="en-title"
+                        class="form-control"
+                        placeholder="english title"
+                      /><br />
+                      <label class="formAddLable">category title</label>
+                      <select id="cat-title"></select>
+                      <br />
+                      <label class="formAddLable">Meal price</label
+                      ><input
+                        type="text"
+                        id="price"
+                        class="form-control"
+                        placeholder="price"
+                      /><br />
+                      <label class="formAddLable"
+                        >Meal english description</label
+                      ><textarea
+                        type="text"
+                        id="ingredients-en"
+                        class="form-control"
+                        placeholder="english ingredients"
+                      ></textarea>
+                      <label class="formAddLable">Meal arabic description</label
+                      ><textarea
+                        type="text"
+                        id="ingredients-ar"
+                        class="form-control"
+                        placeholder="arabic ingredients"
+                      ></textarea>
+                      <br />
+                      <lable>ImageName</lable
+                      ><input type="text" id="namebox" /><label
+                        id="extlab"
+                      ></label
+                      ><br /><br />
+                      <img id="myimg" />
+                      <label id="upprogress"></label>
+                      <div class="progress">
+                        <div class="progress-bar" id="progress-bar"></div>
+                      </div>
+                      <br /><br />
+                      <button id="selBtn">select image</button>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="add-meal"
+                      >
+                        Add Meal
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-Success"
+                        id="update-meal"
+                      >
+                        Update Meal
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- *****************************End add parcel meal modal ***************************** -->
+      </div>
+
+      <div
+        class="tab-pane fade"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        <section id="sectionB" class="container base-table card card-body">
+          <a
+            class="btn btn-primary"
+            id="start-add-new-meal"
+            data-toggle="modal"
+            data-target="#ModalCenter"
+            ><h6>Add Daily Meal</h6></a
+          ><br /><br />
+          <table class="table table-dark">
+            <thead>
+              <th>English Title</th>
+              <th>Arabic Title</th>
+              <th>Image</th>
+              <th>Action</th>
+            </thead>
+            <tbody id="tbody-daily-meal"></tbody>
+          </table>
+
+          <!-- *****************************Satrt add daily meal modal *****************************-->
+          <div
+            class="modal fade"
+            id="ModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="ModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ModalLongTitle">
+                    Add Meal
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div><!-- end header modal-->
+
+                <div class="modal-body">
+                  <label class="formAddLable">Meal arabic title</label
+                    ><input
+                      class="form-control"
+                      type="text"
+                      id="arabic-title"
+                      placeholder="arabic title"
+                    /><br />
+                    <label class="formAddLable">Meal english title</label
+                    ><input
+                      type="text"
+                      id="english-title"
+                      class="form-control"
+                      placeholder="english title"
+                    /><br />
+
+                    <lable>ImageName</lable
+                      ><input type="text" id="name-box" />
+                      <label
+                        id="extention"
+                      ></label
+                      ><br /><br />
+                      <img id="image-preview" />
+                      <label id="uppload-progress"></label>
+                      <div class="progress">
+                        <div class="progress-bar" id="progressbar"></div>
+                      </div>
+                      <br /><br />
+                      <button id="select-image">select image</button>
+
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="add-daily-meal"
+                  >
+                    Add Meal
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-Success"
+                    id="update-daily-meal"
+                  >
+                    Update Meal
+                  </button>
+                </div>
+
+
+              </div><!-- end modal content-->
+            </div>
+          </div> <!-- end modal-->
+
+          <!-- *****************************End add daily meal modal *****************************-->
+        </section>
+      </div>
+    </div>
+    <!-- ************************************************************************************************* -->
+
+    <footer></footer>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" defer src="assets/js/plugin.js" defer></script>
+
+    <script type="module" src="assets/js/app.js" defer></script>
+
+    <script type="module" src="assets/js/daily_meal.js" defer></script>
+  </body>
+</html>

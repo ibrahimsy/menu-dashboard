@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.5">
+        <title>FireBase Control</title>
+        <link href="assets/css/style.css" type="text/css"/>
+    </head>
+    <body>
+
+<script type="module" defer>
+
+ // Import the functions you need from the SDKs you need
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+ // TODO: Add SDKs for Firebase products that you want to use
+ // https://firebase.google.com/docs/web/setup#available-libraries
+
+ // Your web app's Firebase configuration
+ // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+ const firebaseConfig = {
+   apiKey: "AIzaSyCYyfp00dWfn_PEEaKlRNRqOdeztn83Ks4",
+   authDomain: "atoos-menu.firebaseapp.com",
+   projectId: "atoos-menu",
+   storageBucket: "atoos-menu.appspot.com",
+   messagingSenderId: "1004955484041",
+   appId: "1:1004955484041:web:f5c49cad498826c536eb58",
+   measurementId: "G-GC4ZJQ7SCM"
+ };
+
+ // Initialize Firebase
+ const app = initializeApp(firebaseConfig);
+ const analytics = getAnalytics(app);
+
+ import { 
+     getFirestore,doc,getDoc,setDoc,collection,addDoc,updateDoc,deleteDoc,deleteField
+ } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js";
+
+ const db = getFirestore();
+
+ //--------------------- add document to your collection with auto id---------//
+//  async function addDocument_autoId(){
+//      var ref = collection(db,"categories");
+//      const docRef = await addDoc(ref,{
+//          imageUrl:"",
+//          titleAr:"arabic",
+//          titleEn:"English"
+//      }).then(()=>{
+//          alert("data added successfuly");
+//      }).catch((error)=>{
+//          alert('unsuccsesful operation, error'+error);
+//      });
+//      console.log('document id is'+docRef.id);
+//  }
+
+async function addMeal_autoId() {
+  var ref = collection(db, "categories/1QMlwkdQhIMp94qN2o1S/meals");
+  const docRef = await addDoc(ref, {
+    titleEn: "enTitle.value",
+    titleAr: "arTitle.value",
+    price: 14,
+    ingredients: "ingredients.value",
+    imageUrl: "",
+  })
+    .then(() => {
+      alert("meal added successfuly");
+    })
+    .catch((error) => {
+      alert("unsuccsesful operation, error" + error);
+    });
+    console.log('document id is'+docRef);
+}
+ //----------- add document to collection with custom id ---------
+
+ async function addDocumentCustomId(){
+     var ref = doc(db,"categories","1");
+     await setDoc(ref,{
+         imageUrl:"",
+         titleAr:"arabic",
+         titleEn:"English"
+     }).then(()=>{
+         alert("data added successfuly");
+     }).catch((error)=>{
+         alert('unsuccsesful operation, error'+error);
+     });
+ } 
+//----------- getting document with specific id---------
+
+async function getDocument(){
+    var ref = doc(db,"categories","1");
+    const docSnapshot = await getDoc(ref);
+
+    if(docSnapshot.exists()){
+        alert('your titleAr is'+docSnapshot.data().titleAr);
+    }else{
+        alert('no shuch document');
+    }
+}
+//---------------------------------------
+
+async function updateFieldsInDocument(){
+    var ref = doc(db,"categories","1");
+     await updateDoc(ref,{
+         imageUrl:"image",
+         titleAr:"arabic",
+         titleEn:"English"
+     }).then(()=>{
+         alert("data updated successfuly");
+     }).catch((error)=>{
+         alert('unsuccsesful operation, error'+error);
+     });
+}
+//---------------------delete document -------------
+
+async function deleteDocument(){
+    var ref = doc(db,"categories","1");
+    const docSnapshot = await getDoc(ref);
+
+    if(!docSnapshot.exists()){
+        alert('document doesn\'t exsist');
+    }else{
+        await deleteDoc(ref).then(()=>{
+         alert("data deleted successfuly");
+     }).catch((error)=>{
+         alert('unsuccsesful operation, error'+error);
+     });
+    }
+}
+
+ let insertBtn = document.getElementById('addDoc');
+ let showtBtn = document.getElementById('showDocId');
+ insertBtn.addEventListener('click',addMeal_autoId);
+</script>
+
+        <header>
+            
+        </header>
+        <nav></nav>
+        <div id="container">
+            <button id="addDoc">Add Document</button>
+            <button id="showDocId">show id</button>
+        </div>
+        <footer></footer>
+        <!--<script type="module" src="assets/js/connectFirebase.js"></script>-->
+    </body>
+</html>
